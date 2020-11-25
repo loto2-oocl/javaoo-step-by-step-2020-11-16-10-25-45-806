@@ -14,11 +14,11 @@ public class Student extends Person {
 
     @Override
     public String introduce() {
-        StringBuilder introduction = new StringBuilder()
-            .append(super.introduce())
+        StringBuilder introduction = new StringBuilder(super.introduce())
             .append(String.format(" I am a %s.", this.getClass().getSimpleName()));
 
-        if (this.getKlass().getLeader() != null && this.getKlass().getLeader().getId() == this.getId()) {
+        Student leader = this.getKlass().getLeader();
+        if (leader != null && leader.getId().equals(this.getId())) {
             introduction.append(String.format(" I am Leader of %s.", this.getKlass().getDisplayName()));
         } else {
             introduction.append(String.format(" I am at %s.", this.getKlass().getDisplayName()));
