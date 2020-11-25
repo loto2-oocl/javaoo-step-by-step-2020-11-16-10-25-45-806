@@ -21,12 +21,11 @@ public class Teacher extends Person {
         if (klass == null) {
             return String.format("%s I am a %s. I teach No Class.", super.introduce(), this.getClass().getSimpleName());
         }
-        return String.format("%s I am a %s. I teach %s.", super.introduce(), this.getClass().getSimpleName(), this.klass.getDisplayName());
+        return String.format("%s I am a %s. I teach %s.", super.introduce(), this.getClass().getSimpleName(), this.getKlass().getDisplayName());
     }
 
     public String introduceWith(Student student) {
-        boolean sameClass = this.getKlass().getNumber().equals(student.getKlass().getNumber());
-        if (sameClass) {
+        if (this.getKlass().getNumber().equals(student.getKlass().getNumber())) {
             return String.format("%s I am a %s. I teach %s.", super.introduce(), this.getClass().getSimpleName(), student.getName());
         }
         return String.format("%s I am a %s. I don't teach %s.", super.introduce(), this.getClass().getSimpleName(), student.getName());
