@@ -29,6 +29,10 @@ public class Person {
 
     @Override
     public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+
         Person compare = (Person)obj;
         return compare.getId().equals(this.getId());
     }
