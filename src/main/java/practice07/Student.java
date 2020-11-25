@@ -19,11 +19,9 @@ public class Student extends Person {
 
         Student leader = this.getKlass().getLeader();
         if (leader != null && leader.getId().equals(this.getId())) {
-            introduction.append(String.format(" I am Leader of %s.", this.getKlass().getDisplayName()));
-        } else {
-            introduction.append(String.format(" I am at %s.", this.getKlass().getDisplayName()));
+            return introduction.append(String.format(" I am Leader of %s.", this.getKlass().getDisplayName())).toString();
         }
 
-        return introduction.toString();
+        return introduction.append(String.format(" I am at %s.", this.getKlass().getDisplayName())).toString();
     }
 }
