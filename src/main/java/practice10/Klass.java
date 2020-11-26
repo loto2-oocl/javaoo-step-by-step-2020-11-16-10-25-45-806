@@ -6,8 +6,8 @@ import java.util.List;
 public class Klass {
     private final Integer number;
     private Student leader;
-    private List<Student> studentList;
-    private List<Teacher> observers;
+    private final List<Student> studentList;
+    private final List<KlassObserver> observers;
 
     public Klass(int number) {
         this.number = number;
@@ -20,13 +20,13 @@ public class Klass {
     }
 
     public void assignLeader(Student student) {
-        if (!isIn(student)) {
+        if (!this.isIn(student)) {
             System.out.println("It is not one of us.");
             return;
         }
 
         this.leader = student;
-        this.notifyTeacherForNewLeader(student);
+        this.notifyObserversForNewLeader(student);
     }
 
     public Integer getNumber() {
@@ -39,7 +39,7 @@ public class Klass {
 
     public void appendMember(Student student) {
         studentList.add(student);
-        this.notifyTeacherForNewStudent(student);
+        this.notifyObserversForNewStudent(student);
     }
 
     public boolean isIn(Student student) {
@@ -50,15 +50,15 @@ public class Klass {
         this.observers.add(teacher);
     }
 
-    public void notifyTeacherForNewStudent(Student student) {
-        for (Teacher follower : observers) {
-            follower.updateNewStudentJoinedClass(student.getName(), this.getNumber());
+    public void notifyObserversForNewStudent(Student student) {
+        for (KlassObserver observer : observers) {
+            observer.updateNewStudentJoinedClass(student.getName(), this.getNumber());
         }
     }
 
-    private void notifyTeacherForNewLeader(Student student) {
-        for (Teacher follower : observers) {
-            follower.updateNewLeaderForClass(student.getName(), this.getNumber());
+    private void notifyObserversForNewLeader(Student student) {
+        for (KlassObserver observer : observers) {
+            observer.updateNewLeaderForClass(student.getName(), this.getNumber());
         }
     }
 }

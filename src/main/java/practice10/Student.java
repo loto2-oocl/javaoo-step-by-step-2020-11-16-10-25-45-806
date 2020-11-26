@@ -16,10 +16,11 @@ public class Student extends Person {
     @Override
     public String introduce() {
         StringBuilder introduction = new StringBuilder(super.introduce())
-                .append(String.format(" I am a %s.", this.getClass().getSimpleName()));
+            .append(String.format(" I am a %s.", this.getClass().getSimpleName()));
 
-        Student leader = this.getKlass().getLeader();
-        if (leader != null && leader.getId().equals(this.getId())) {
+        //        Student leader = this.getKlass().getLeader();
+        //        if (leader != null && leader.getId().equals(this.getId())) {
+        if (this.equals(this.getKlass().getLeader())) {
             return introduction.append(String.format(" I am Leader of %s.", this.getKlass().getDisplayName())).toString();
         }
 

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Teacher extends Person {
+public class Teacher extends Person implements KlassObserver {
     private final List<Klass> classes;
 
     public Teacher(int id, String name, int age) {
@@ -59,10 +59,12 @@ public class Teacher extends Person {
         return this.getClasses().stream().anyMatch(klass -> klass.isIn(student));
     }
 
+    @Override
     public void updateNewStudentJoinedClass(String studentName, Integer classNumber) {
         System.out.printf("I am %s. I know %s has joined Class %d.%n", this.getName(), studentName, classNumber);
     }
 
+    @Override
     public void updateNewLeaderForClass(String studentName, Integer classNumber) {
         System.out.printf("I am %s. I know %s become Leader of Class %d.%n", this.getName(), studentName, classNumber);
     }
