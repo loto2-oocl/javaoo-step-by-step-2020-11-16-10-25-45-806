@@ -46,8 +46,8 @@ public class Klass {
         return this.studentList.stream().anyMatch(classMate -> classMate.equals(student));
     }
 
-    public void register(Teacher teacher) {
-        this.observers.add(teacher);
+    public void register(KlassObserver observer) {
+        this.observers.add(observer);
     }
 
     public void notifyObserversForNewStudent(Student student) {
